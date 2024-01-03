@@ -28,7 +28,7 @@ def read_portfolio(filename):
         for row in rows:
             t=(row[0], int(row[1]), float(row[2]))
             portfolio.append(t)
-        print(portfolio)
+        # print(portfolio)
         return portfolio
 
 # Exercise 2.5
@@ -84,3 +84,29 @@ def can_i_retire():
         pnl += (entry['price'] - prices[key]) * entry['shares']
 
     return {'total': round(total, 2), 'pnl': round(pnl, 2)}
+
+
+# Exercise 2.9
+# Collecting Data
+print('>>>> 2.9 >>>>')
+
+stocks = read_portfolio('Data/portfolio.csv')
+prices = read_prices('Data/prices.csv')
+
+
+def make_report(stocks, prices):
+    report = []
+    print('stocks', stocks)
+    print('~~~~~~')
+    print('prices', prices)
+
+    for stock in stocks:
+        print('stock', stock)
+        stock_name, stock_amount, stock_pnl = stock
+        t = (stock_name, stock_amount, prices[stock_name], stock_pnl)
+        report.append(t)
+
+    return report
+
+
+report = make_report(stocks, prices)
